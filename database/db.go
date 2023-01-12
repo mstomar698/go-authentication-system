@@ -12,15 +12,15 @@ import (
 
 func ConnectDB() *mongo.Client {
 	client, err := mongo.NewClient(options.Client().ApplyURI(EnvConnection()))
-	if err != nil {
-		log.Fatal(err)
-	}
+    if err != nil {
+        log.Fatal(err)
+    }
 
-	ctx, _ := context.WithTimeout(context.Background(), 100*time.Second)
-	err = client.Connect(ctx)
-	if err != nil {
-		log.Fatal(err)
-	}
+    ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+    err = client.Connect(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
 
 	err = client.Ping(ctx, nil)
 	if err != nil {
@@ -34,7 +34,6 @@ func ConnectDB() *mongo.Client {
 var DB *mongo.Client = ConnectDB()
 
 func GetCollection(client *mongo.Client, collectionName string) *mongo.Collection {
-	collection := client.Database("golagAPI").Collection(collectionName)
-
-	return collection
+    collection := client.Database("golangAPI").Collection(collectionName)
+    return collection
 }

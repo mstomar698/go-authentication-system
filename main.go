@@ -2,6 +2,7 @@ package main
 
 import (
 	"go-authentication-system/database"
+	"go-authentication-system/routes"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -9,11 +10,11 @@ import (
 func main() {
 	app := fiber.New()
 
+	// Databse Goes here
 	database.ConnectDB()
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.JSON(&fiber.Map{"data": "Hello from Authentication System"})
-	})
+	// Routes Goes here
+	routes.UserRoutes(app)
 
 	app.Listen(":8000")
 }
