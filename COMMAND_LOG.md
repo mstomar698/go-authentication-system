@@ -10,7 +10,6 @@ go get -u github.com/gin-gonic/gin
 go get -u github.com/dgrijalva/jwt-go
 
 go mod tidy
-go run build 
 go run main.go
 
 ```
